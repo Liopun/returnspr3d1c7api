@@ -37,5 +37,5 @@ class ReturnsAPI(APIView):
         float_features = [float(x) for x in request.data.values()]
         final_features = [np.array(float_features)]
         log_reg_model = ApiConfig.model
-        prediction = (log_reg_model.predict(final_features)).astype(int)
+        prediction = (log_reg_model.predict(final_features)[0]).astype(int)
         return Response('Your RETURNS probability is {}'.format(prediction), status=status.HTTP_200_OK)
